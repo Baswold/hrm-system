@@ -1,6 +1,8 @@
 import { Router } from 'express';
 import authRoutes from './auth.routes';
 import employeeRoutes from './employee.routes';
+import leaveRoutes from './leave.routes';
+import attendanceRoutes from './attendance.routes';
 import { databaseHealthCheck } from '../config/database';
 import { sendSuccess, sendServiceUnavailable } from '../utils/response';
 
@@ -46,6 +48,8 @@ router.get('/version', (req, res) => {
  */
 router.use('/auth', authRoutes);
 router.use('/employees', employeeRoutes);
+router.use('/leaves', leaveRoutes);
+router.use('/attendance', attendanceRoutes);
 
 /**
  * API documentation route
@@ -58,6 +62,8 @@ router.get('/', (req, res) => {
     endpoints: {
       auth: '/api/v1/auth',
       employees: '/api/v1/employees',
+      leaves: '/api/v1/leaves',
+      attendance: '/api/v1/attendance',
       health: '/api/v1/health',
     },
   });
